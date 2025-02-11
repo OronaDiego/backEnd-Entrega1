@@ -7,7 +7,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use('/products', productsRouter)
-app.use('/carts', cartsRouter)
+app.use("/api/carts", cartsRouter);
 
 
 
