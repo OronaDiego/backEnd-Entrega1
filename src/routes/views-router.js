@@ -7,8 +7,10 @@ router.get('/', (req,res)=>{
 })
 router.get('/home', async(req,res)=>{
     const products = await manager.getAllProducts()
-    console.log(products)
     res.render('home', {products} )
+})
+router.get('/realTimeProducts', (req,res)=>{
+    res.render('realTimeProducts')
 })
 
 export default router
