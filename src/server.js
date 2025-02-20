@@ -38,11 +38,11 @@ const httpServer = app.listen(8080, () => {
 });
 
 const products = [
-    { title: "producto1", desc: "PRoducto 1 para vender" }
+    { title: "Reloj", desc: "reloj sumergible", code:123, price:100000, stock:4 }
 ];
 
 //creo la conexion del lado del servidor
-const socketServer = new Server(httpServer);
+    export const socketServer = new Server(httpServer);
 //escucho la conexion
 socketServer.on("connection", (socket) => {
     console.log(`Usuario conectado id:${socket.id}`);
@@ -50,11 +50,10 @@ socketServer.on("connection", (socket) => {
         console.log(`user desconectado ${socket.id}`);
     });
 
-    socket.emit("saludoDesdeBack", "Bienvenido a webSocket");
-
     socketServer.emit("arrayProducts", products);
     socket.on("newProduct", (prod)=>{
         products.push(prod)
         socketServer.emit("arrayProducts", products);
     })
 });
+
