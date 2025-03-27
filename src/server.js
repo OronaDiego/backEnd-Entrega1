@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import { initMongoDB } from "./config/db-conexion.js";
 import { Server } from "socket.io";
 import { engine } from "express-handlebars";
 import { fileURLToPath } from "url";
@@ -32,6 +33,11 @@ app.set("view engine", "handlebars");
 app.use("/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/", viewsRouter);
+
+
+initMongoDB()
+    .then(()=> console.log("Conectado a MongoDB"))
+    .catch((error)=> console.log(error));
 
 const httpServer = app.listen(8080, () => {
     console.log("Server corriendo en el puerto 8080");
