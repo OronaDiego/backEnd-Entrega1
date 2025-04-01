@@ -8,11 +8,19 @@ import productsRouter from "./routes/products-router.js";
 import cartsRouter from "./routes/carts-router.js";
 import viewsRouter from "./routes/views-router.js";
 
+
+import { errorHandler } from "./middlewares/error-handler.js";
+
+
+
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(process.cwd(), "src", "public")));
+
+app.use(errorHandler);
+
 
 //  __dirname manualmente
 const __filename = fileURLToPath(import.meta.url);
